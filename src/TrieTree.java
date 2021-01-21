@@ -25,11 +25,12 @@ public class TrieTree {
 
     public void removeWord(String word) {
         word = word.toUpperCase();
-        TrieNode t = root;
+        TrieNode t = root, tt = root;
         int max = 0;
         for (int i = 0; i < word.length(); i++) {
             if (t.children.size() > 1 || t.isWord) {
                 max = i;
+                tt = t;
             }
             t = t.getChild(word.charAt(i));
         }
@@ -37,11 +38,7 @@ public class TrieTree {
             t.isWord = false;
             return;
         }
-        t = root;
-        for (int i = 0; i < max; i++) {
-            t = t.getChild(word.charAt(i));
-        }
-        t.children.remove(t.getChild(word.charAt(max)));
+        tt.children.remove(tt.getChild(word.charAt(max)));
     }
 
     public boolean contain(String word) {
