@@ -4,6 +4,8 @@ public class TrieNode {
     public ArrayList<TrieNode> children = new ArrayList<>();
     public char c;
     public boolean isWord = false;
+    public int index = -1;
+
 
     public TrieNode() {
     }
