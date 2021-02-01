@@ -47,5 +47,10 @@
          </font>
       </Label>
       <Button layoutX="374.0" layoutY="242.0" mnemonicParsing="false" onAction="#check" text="Check" />
+      <Label fx:id="description" alignment="CENTER" layoutX="430.0" layoutY="257.0" prefHeight="120.0" prefWidth="206.0" textAlignment="CENTER">
+         <font>
+            <Font name="Times New Roman" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
