@@ -1,5 +1,4 @@
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -32,45 +31,11 @@ public class UI {
 
     @FXML
     void check(ActionEvent event) {
-        ArrayList<ArrayList<Integer>> list = new ArrayList<>();
-        String words[] = new String[tree.numberWords];
-        for (int i = 0; i < tree.numberWords; i++) {
-            words[i] = null;
-            list.add(new ArrayList<>());
-        }
-        for (int i = 0; i < text.getText().length(); i++) {
-            if (getNonLetter(text.getText(), i) == -1) {
-                String a = text.getText().substring(i);
-                if (tree.contain(a)) {
-                    words[tree.getIndex(a)] = a.toLowerCase();
-                    list.get(tree.getIndex(a)).add(i);
-                }
-                break;
-            } else {
-                String a = text.getText().substring(i, getNonLetter(text.getText(), i));
-                if (tree.contain(a)) {
-                    words[tree.getIndex(a)] = a.toLowerCase();
-                    list.get(tree.getIndex(a)).add(i);
-                }
-                i = getNonLetter(text.getText(), i);
-            }
-        }
-        String output = "";
-        for (int i = 0; i < tree.numberWords; i++) {
-            if (words[i] == null)
-                continue;
-            output += words[i] + " : ";
-            boolean first = true;
-            for (int j : list.get(i)) {
-                if (first) {
-                    output += String.valueOf(j);
-                    first = false;
-                } else
-                    output += ", " + String.valueOf(j);
-            }
-            output += "\n";
-        }
-        result.setText(output);
+        SearchClass searchClass = new SearchClass();
+        String search = searchClass.search(text.getText(), tree);
+        if (search.equals(""))
+            description.setText("No word found!!!");
+        result.setText(search);
     }
 
     private int getNonLetter(String text, int pos) {
